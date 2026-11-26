@@ -16,7 +16,7 @@ OUT = sys.argv[1] if len(sys.argv) > 1 else "dist"
 FONT = "'Segoe UI',Helvetica,Arial,sans-serif"
 
 
-def baixar(nome):
+def baixar(nome, cliente=False):
     if nome.startswith("/") or nome.startswith("."):  # arquivo local (testes)
         dados = open(nome, "rb").read()
     else:
@@ -26,12 +26,21 @@ def baixar(nome):
     bbox = im.getbbox()  # corta bordas transparentes
     if bbox:
         im = im.crop(bbox)
+    # corta também bordas brancas embutidas na imagem, para o logo ocupar o cartão
+    from PIL import ImageChops
+    fundo_branco = Image.new("RGBA", im.size, (255, 255, 255, 255))
+    composto = Image.alpha_composite(fundo_branco, im).convert("RGB")
+    caixa = ImageChops.difference(composto, Image.new("RGB", im.size, (255, 255, 255))).point(lambda v: 255 if v > 18 else 0).getbbox()
+    if caixa:
+        im = im.crop(caixa)
     im.thumbnail((480, 240))
     # logo claro (ex.: branco sobre transparente) vai num fundo escuro; os demais em fundo branco
     dados = im.get_flattened_data() if hasattr(im, "get_flattened_data") else im.getdata()
     px = [p for p in dados if p[3] > 128] or [(0, 0, 0, 255)]
     lum = sum(0.299 * p[0] + 0.587 * p[1] + 0.114 * p[2] for p in px) / len(px)
-    fundo = "#101826" if lum > 200 else "#ffffff"
+    transparente = any(p[3] < 128 for p in dados)
+    # clientes sempre em cartão branco; só o logo da Dataviewer (branco sobre transparente) vai no escuro
+    fundo = "#101826" if (not cliente and transparente and lum > 200) else "#ffffff"
     buf = io.BytesIO(); im.save(buf, "PNG", optimize=True)
     return im.size, "data:image/png;base64," + base64.b64encode(buf.getvalue()).decode(), fundo
 
@@ -70,7 +79,7 @@ def faixa(logos, dark):
     itens = ""
     for i, lg in enumerate(logos):
         x = 24 + i * (cw + gap)
-        w, h = caber(lg[0], cw - 28, ch - 28)
+        w, h = caber(lg[0], cw - 20, ch - 18)
         itens += (f'<rect x="{x:.1f}" y="52" width="{cw:.1f}" height="{ch}" rx="12" fill="{lg[2]}" stroke="{line}"/>'
                   f'<image x="{x + cw / 2 - w / 2:.1f}" y="{52 + ch / 2 - h / 2:.1f}" width="{w:.1f}" height="{h:.1f}" href="{lg[1]}" xlink:href="{lg[1]}"/>')
     return f'''<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="1200" height="172" viewBox="0 0 1200 172">
@@ -87,7 +96,7 @@ def main():
     clientes = []
     for c in CLIENTES:
         try:
-            clientes.append(baixar(c))
+            clientes.append(baixar(c, cliente=True))
         except Exception as e:
             print(f"aviso: não baixou {c}: {e}")
     for dark, suf in ((True, "dark"), (False, "light")):
