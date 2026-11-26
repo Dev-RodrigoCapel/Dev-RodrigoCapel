@@ -26,12 +26,13 @@ def baixar(nome, cliente=False):
     bbox = im.getbbox()  # corta bordas transparentes
     if bbox:
         im = im.crop(bbox)
-    # corta também bordas brancas embutidas na imagem, para o logo ocupar o cartão
+    # corta também bordas brancas embutidas (só em logos com fundo opaco, não nos transparentes)
     from PIL import ImageChops
+    opaco = im.getchannel("A").getextrema()[0] > 200
     fundo_branco = Image.new("RGBA", im.size, (255, 255, 255, 255))
     composto = Image.alpha_composite(fundo_branco, im).convert("RGB")
     caixa = ImageChops.difference(composto, Image.new("RGB", im.size, (255, 255, 255))).point(lambda v: 255 if v > 18 else 0).getbbox()
-    if caixa:
+    if opaco and caixa:
         im = im.crop(caixa)
     im.thumbnail((480, 240))
     # logo claro (ex.: branco sobre transparente) vai num fundo escuro; os demais em fundo branco
