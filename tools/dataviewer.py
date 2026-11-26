@@ -27,8 +27,13 @@ def baixar(nome):
     if bbox:
         im = im.crop(bbox)
     im.thumbnail((480, 240))
+    # logo claro (ex.: branco sobre transparente) vai num fundo escuro; os demais em fundo branco
+    dados = im.get_flattened_data() if hasattr(im, "get_flattened_data") else im.getdata()
+    px = [p for p in dados if p[3] > 128] or [(0, 0, 0, 255)]
+    lum = sum(0.299 * p[0] + 0.587 * p[1] + 0.114 * p[2] for p in px) / len(px)
+    fundo = "#101826" if lum > 200 else "#ffffff"
     buf = io.BytesIO(); im.save(buf, "PNG", optimize=True)
-    return im.size, "data:image/png;base64," + base64.b64encode(buf.getvalue()).decode()
+    return im.size, "data:image/png;base64," + base64.b64encode(buf.getvalue()).decode(), fundo
 
 
 def caber(size, w, h):
@@ -39,7 +44,7 @@ def caber(size, w, h):
 def cartao(logo, dark):
     bg, ink, mute, line = ("#0d1117", "#f0f3f6", "#9aa4b2", "#2a3547") if dark else ("#ffffff", "#16181d", "#57606a", "#d0d7de")
     acc = "#4f8cff" if dark else "#2350b8"
-    (lw, lh) = caber(logo[0], 250, 110)
+    (lw, lh) = caber(logo[0], 250, 160)
     servicos = [("Power BI", "implantação, modelagem semântica, DAX avançado e governança"),
                 ("Integração de dados", "ETL/ELT, APIs, pipelines e automações entre ERPs, CRMs e bancos"),
                 ("Treinamentos", "capacitações in-company de Power BI e cultura data-driven")]
@@ -51,7 +56,7 @@ def cartao(logo, dark):
                    f'<text x="386" y="{y + 20}" font-family="{FONT}" font-size="14" fill="{mute}">{d}</text>')
     return f'''<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="1200" height="240" viewBox="0 0 1200 240">
 <rect x="1" y="1" width="1198" height="238" rx="16" fill="{bg}" stroke="{line}"/>
-<rect x="24" y="24" width="300" height="192" rx="12" fill="#ffffff" stroke="{line}"/>
+<rect x="24" y="24" width="300" height="192" rx="12" fill="{logo[2]}" stroke="{line}"/>
 <image x="{174 - lw / 2}" y="{120 - lh / 2}" width="{lw}" height="{lh}" href="{logo[1]}" xlink:href="{logo[1]}"/>
 <text x="356" y="50" font-family="{FONT}" font-size="22" font-weight="700" fill="{acc}">Consultoria em dados &amp; Power BI</text>
 <text x="1170" y="50" text-anchor="end" font-family="{FONT}" font-size="15" fill="{mute}">o próximo nível da análise de dados</text>
@@ -66,7 +71,7 @@ def faixa(logos, dark):
     for i, lg in enumerate(logos):
         x = 24 + i * (cw + gap)
         w, h = caber(lg[0], cw - 28, ch - 28)
-        itens += (f'<rect x="{x:.1f}" y="52" width="{cw:.1f}" height="{ch}" rx="12" fill="#ffffff" stroke="{line}"/>'
+        itens += (f'<rect x="{x:.1f}" y="52" width="{cw:.1f}" height="{ch}" rx="12" fill="{lg[2]}" stroke="{line}"/>'
                   f'<image x="{x + cw / 2 - w / 2:.1f}" y="{52 + ch / 2 - h / 2:.1f}" width="{w:.1f}" height="{h:.1f}" href="{lg[1]}" xlink:href="{lg[1]}"/>')
     return f'''<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="1200" height="172" viewBox="0 0 1200 172">
 <rect x="1" y="1" width="1198" height="170" rx="16" fill="{bg}" stroke="{line}"/>
