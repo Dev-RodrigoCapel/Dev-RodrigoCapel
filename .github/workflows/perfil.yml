@@ -1,6 +1,6 @@
 name: Atualizar perfil
 
-# Gera a animação da cobrinha e os cartões de estatísticas e publica no branch "output".
+# Gera a cobrinha, as estatísticas e os cartões da Dataviewer e publica no branch "output".
 # O README usa esses arquivos direto do branch, então nada depende de serviços externos.
 on:
   schedule:
@@ -17,6 +17,13 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 10
     steps:
+      - uses: actions/checkout@v4
+
+      - name: Cartões da Dataviewer (logo e clientes de dataviewer.com.br)
+        run: |
+          pip install -q pillow
+          python tools/dataviewer.py dist
+
       - name: Cobrinha das contribuições
         uses: Platane/snk/svg-only@v3
         with:

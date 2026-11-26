@@ -12,14 +12,37 @@
 
 ## Sobre mim
 
-Engenheiro de Dados e Desenvolvedor BI no **SESC-MT** (Time de Dados · GTI) e responsável pela **Dataviewer**,
+Engenheiro de Dados e Desenvolvedor BI no **SESC-MT** (Time de Dados · GTI) e responsável pela **[Dataviewer](https://dataviewer.com.br)**,
 consultoria de BI, ETL e automação em Cuiabá-MT.
 
-- 🔄 Construo pipelines de ponta a ponta: extração de ERPs e APIs, cargas em **SQL Server** com **SSIS** e **Python**, orquestradas pelo **SQL Agent**.
+- 🔄 Construo pipelines de ponta a ponta: extração de ERPs e APIs, cargas em **SQL Server** com **SSIS** e **Python**, e bancos **Oracle, PostgreSQL e MariaDB**, orquestradas pelo **SQL Agent**.
 - 📊 Transformo esses dados em painéis **Power BI** publicados no **Report Server**.
 - 🔗 Integro sistemas de gestão: **TOTVS Protheus, MXM, RM e Teknisa**.
 - 🛠️ Mais de 10 anos em TI: comecei em infraestrutura e hoje atuo em engenharia de dados e BI.
 - 🎓 Sistemas de Informação · Pós-graduação em Ciência de Dados.
+
+## Dataviewer — minha consultoria
+
+Na **[Dataviewer](https://dataviewer.com.br)** levo para outras empresas o mesmo trabalho que faço no dia a dia:
+projetos de Power BI, integração de dados entre sistemas e treinamentos.
+
+<a href="https://dataviewer.com.br">
+  <picture>
+    <source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/Dev-RodrigoCapel/Dev-RodrigoCapel/output/dataviewer-dark.svg">
+    <img alt="Dataviewer — consultoria em dados e Power BI" src="https://raw.githubusercontent.com/Dev-RodrigoCapel/Dev-RodrigoCapel/output/dataviewer-light.svg" width="100%">
+  </picture>
+</a>
+
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/Dev-RodrigoCapel/Dev-RodrigoCapel/output/clientes-dark.svg">
+  <img alt="Empresas com projetos com a Dataviewer" src="https://raw.githubusercontent.com/Dev-RodrigoCapel/Dev-RodrigoCapel/output/clientes-light.svg" width="100%">
+</picture>
+
+<p align="center">
+  <a href="https://dataviewer.com.br"><img src="https://img.shields.io/badge/dataviewer.com.br-2350B8?style=for-the-badge&logo=googlechrome&logoColor=white" alt="Site da Dataviewer"></a>
+  <a href="https://www.linkedin.com/company/dataviewer"><img src="https://img.shields.io/badge/LinkedIn%20Dataviewer-0A66C2?style=for-the-badge&logo=data:image/svg%2bxml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNCAyNCIgZmlsbD0id2hpdGUiPjxwYXRoIGQ9Ik0yMC40NSAyMC40NWgtMy41NnYtNS41N2MwLTEuMzMtLjAyLTMuMDQtMS44NS0zLjA0LTEuODUgMC0yLjEzIDEuNDUtMi4xMyAyLjk0djUuNjdIOS4zNVY5aDMuNDF2MS41NmguMDVjLjQ4LS45IDEuNjQtMS44NSAzLjM3LTEuODUgMy42IDAgNC4yNyAyLjM3IDQuMjcgNS40NnY2LjI4ek01LjM0IDcuNDNhMi4wNiAyLjA2IDAgMSAxIDAtNC4xMiAyLjA2IDIuMDYgMCAwIDEgMCA0LjEyek03LjEyIDIwLjQ1SDMuNTZWOWgzLjU2djExLjQ1ek0yMi4yMiAwSDEuNzdDLjc5IDAgMCAuNzcgMCAxLjcydjIwLjU2QzAgMjMuMjMuNzkgMjQgMS43NyAyNGgyMC40NWMuOTggMCAxLjc4LS43NyAxLjc4LTEuNzJWMS43MkMyNCAuNzcgMjMuMiAwIDIyLjIyIDB6Ii8+PC9zdmc+&logoColor=white" alt="LinkedIn da Dataviewer"></a>
+  <a href="mailto:contato@dataviewer.com.br"><img src="https://img.shields.io/badge/contato@dataviewer.com.br-333333?style=for-the-badge" alt="contato@dataviewer.com.br"></a>
+</p>
 
 ## Como os dados fluem nos meus projetos
 
@@ -41,6 +64,9 @@ flowchart LR
       <img src="assets/stack/tsql.svg" width="48" alt="T-SQL" title="T-SQL">
       <img src="assets/stack/ssis.svg" width="48" alt="SSIS" title="SSIS — SQL Server Integration Services">
       <img src="assets/stack/sqlagent.svg" width="48" alt="SQL Server Agent" title="SQL Server Agent">
+      <img src="assets/stack/oracle.svg" width="48" alt="Oracle" title="Oracle Database">
+      <img src="assets/stack/postgresql.svg" width="48" alt="PostgreSQL" title="PostgreSQL">
+      <img src="assets/stack/mariadb.svg" width="48" alt="MariaDB" title="MariaDB">
       <img src="assets/stack/python.svg" width="48" alt="Python" title="Python">
       <img src="assets/stack/nifi.svg" width="48" alt="Apache NiFi" title="Apache NiFi">
     </td>
@@ -79,16 +105,16 @@ flowchart LR
 
 <p align="center">
   <picture>
-    <source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/Dev-RodrigoCapel/RodrigoCapel/output/stats-dark.svg">
-    <img height="170" alt="Estatísticas no GitHub" src="https://raw.githubusercontent.com/Dev-RodrigoCapel/RodrigoCapel/output/stats-light.svg">
+    <source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/Dev-RodrigoCapel/Dev-RodrigoCapel/output/stats-dark.svg">
+    <img height="170" alt="Estatísticas no GitHub" src="https://raw.githubusercontent.com/Dev-RodrigoCapel/Dev-RodrigoCapel/output/stats-light.svg">
   </picture>
   <picture>
-    <source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/Dev-RodrigoCapel/RodrigoCapel/output/langs-dark.svg">
-    <img height="170" alt="Linguagens mais usadas" src="https://raw.githubusercontent.com/Dev-RodrigoCapel/RodrigoCapel/output/langs-light.svg">
+    <source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/Dev-RodrigoCapel/Dev-RodrigoCapel/output/langs-dark.svg">
+    <img height="170" alt="Linguagens mais usadas" src="https://raw.githubusercontent.com/Dev-RodrigoCapel/Dev-RodrigoCapel/output/langs-light.svg">
   </picture>
 </p>
 
 <picture>
-  <source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/Dev-RodrigoCapel/RodrigoCapel/output/snake-dark.svg">
-  <img alt="Cobrinha comendo o gráfico de contribuições" src="https://raw.githubusercontent.com/Dev-RodrigoCapel/RodrigoCapel/output/snake-light.svg" width="100%">
+  <source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/Dev-RodrigoCapel/Dev-RodrigoCapel/output/snake-dark.svg">
+  <img alt="Cobrinha comendo o gráfico de contribuições" src="https://raw.githubusercontent.com/Dev-RodrigoCapel/Dev-RodrigoCapel/output/snake-light.svg" width="100%">
 </picture>
