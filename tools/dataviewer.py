@@ -23,7 +23,7 @@ def baixar(nome, cliente=False):
         req = urllib.request.Request(BASE + nome, headers={"User-Agent": "Mozilla/5.0"})
         dados = urllib.request.urlopen(req, timeout=30).read()
     im = Image.open(io.BytesIO(dados)).convert("RGBA")
-    bbox = im.getbbox()  # corta bordas transparentes
+    bbox = im.getchannel("A").point(lambda v: 255 if v > 40 else 0).getbbox()  # corta bordas (quase) transparentes
     if bbox:
         im = im.crop(bbox)
     # corta também bordas brancas embutidas (só em logos com fundo opaco, não nos transparentes)
